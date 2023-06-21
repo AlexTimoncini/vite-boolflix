@@ -16,6 +16,12 @@ import { store } from '../store.js'
                     return true
                 }
                 return false
+            },
+            handleVote(vote){
+                if(vote > 0){
+                    return (vote / 2).toFixed()
+                }
+                return 'N.C.'
             }
         }
     }
@@ -25,6 +31,12 @@ import { store } from '../store.js'
     <ul>
         <li v-for="film in store.filmList">
             <ul>
+                <li>
+                    <img :src="(film.backdrop_path != null) 
+                    ? getImagePath(`https://image.tmdb.org/t/p/w342${film.backdrop_path}`) 
+                    : getImagePath(`https://image.tmdb.org/t/p/w342${film.backdrop_path}`)" 
+                    :alt="film.original_name + 'image'">
+                </li>
                 <li>
                     {{ film.title }}
                 </li>
@@ -36,7 +48,7 @@ import { store } from '../store.js'
                     :alt="film.original_language + ' language'" >
                 </li>
                 <li>
-                    {{ film.vote_average }}
+                    {{ handleVote(film.vote_average) }}
                 </li>
             </ul>
         </li>

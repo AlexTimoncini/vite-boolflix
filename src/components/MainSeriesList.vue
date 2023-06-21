@@ -26,7 +26,10 @@ import { store } from '../store.js'
         <li v-for="serie in store.seriesList">
             <ul>
                 <li>
-                    {{ serie.original_name}}
+                    <img :src="getImagePath(`https://image.tmdb.org/t/p/w342${serie.backdrop_path}`)" :alt="serie.original_name + 'image'">
+                </li>
+                <li>
+                    {{ serie.original_name }}
                 </li>
                 <li>
                     <img :src="isAvaibleLang(serie.original_language) ? getImagePath(`../assets/lang/${serie.original_language}.png`) : getImagePath(`../assets/lang/globe.png`)" 
