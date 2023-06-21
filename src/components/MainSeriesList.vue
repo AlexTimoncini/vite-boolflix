@@ -1,7 +1,7 @@
 <script>
 import { store } from '../store.js'
     export default{
-        name: 'MainFilmList',
+        name: 'MainSeriesList',
         data() {
             return {
                 store,
@@ -23,20 +23,17 @@ import { store } from '../store.js'
 
 <template>
     <ul>
-        <li v-for="film in store.filmList">
+        <li v-for="serie in store.seriesList">
             <ul>
                 <li>
-                    {{ film.title }}
+                    {{ serie.original_name}}
                 </li>
                 <li>
-                    {{ film.original_title }}
+                    <img :src="isAvaibleLang(serie.original_language) ? getImagePath(`../assets/lang/${serie.original_language}.png`) : getImagePath(`../assets/lang/globe.png`)" 
+                    :alt="serie.original_language + ' language'" >
                 </li>
                 <li>
-                    <img :src="isAvaibleLang(film.original_language) ? getImagePath(`../assets/lang/${film.original_language}.png`) : getImagePath(`../assets/lang/globe.png`)" 
-                    :alt="film.original_language + ' language'" >
-                </li>
-                <li>
-                    {{ film.vote_average }}
+                    {{ serie.vote_average }}
                 </li>
             </ul>
         </li>
@@ -44,10 +41,6 @@ import { store } from '../store.js'
 </template>
 
 <style lang="scss" scoped>
-    ul{
-        margin-bottom: 3rem;
-        background-color: azure;
-    }
     img {
         height: 50px;
     }

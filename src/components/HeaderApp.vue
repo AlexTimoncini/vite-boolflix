@@ -18,11 +18,24 @@
                 const generalUrl = 'https://api.themoviedb.org/3/search/movie?api_key=8f101200f70e7ca202e652f769e5695e'
                 return `${generalUrl}&query=${filter}`
             },
-            displayFilm(filmName){
+            filterSeries(filter){
+                const generalUrl = 'https://api.themoviedb.org/3/search/tv?api_key=8f101200f70e7ca202e652f769e5695e'
+                return `${generalUrl}&query=${filter}`
+            },
+            displayResults(filmName){
                 axios.get(this.filterFilm(filmName))
                 .then( (response)=> {
                     store.filmList = response.data.results
                     console.log(store.filmList);
+                })
+                .catch( function(error){
+                    console.log(error)
+                });
+
+                axios.get(this.filterSeries(filmName))
+                .then( (response)=> {
+                    store.seriesList = response.data.results
+                    console.log(store.seriesList);
                 })
                 .catch( function(error){
                     console.log(error)
@@ -34,7 +47,7 @@
 
 <template>
     <header>
-        <HeaderNavbar @lookingFilm="displayFilm"/>
+        <HeaderNavbar @lookingFilm="displayResults"/>
     </header>
 </template>
 
