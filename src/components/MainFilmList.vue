@@ -21,7 +21,7 @@ import { store } from '../store.js'
                 if(vote > 0){
                     return (vote / 2).toFixed()
                 }
-                return 'N.C.'
+                return 0
             }
         }
     }
@@ -35,7 +35,8 @@ import { store } from '../store.js'
                     <img :src="(film.backdrop_path != null) 
                     ? getImagePath(`https://image.tmdb.org/t/p/w342${film.backdrop_path}`) 
                     : getImagePath(`../assets/default_poster.jpg`)" 
-                    :alt="film.original_name + 'image'">
+                    :alt="film.original_name + 'image'"
+                    class="ivy_movie_cover">
                 </li>
                 <li>
                     {{ film.title }}
@@ -48,7 +49,12 @@ import { store } from '../store.js'
                     :alt="film.original_language + ' language'" >
                 </li>
                 <li>
-                    {{ handleVote(film.vote_average) }}
+                    <span v-for="star in parseInt(handleVote(film.vote_average))">
+                        <i class="fa-solid fa-star"></i>
+                    </span>
+                    <span v-for="unstar in (5 - parseInt(handleVote(film.vote_average)))">
+                        <i class="fa-regular fa-star"></i>
+                    </span>
                 </li>
             </ul>
         </li>
@@ -56,11 +62,14 @@ import { store } from '../store.js'
 </template>
 
 <style lang="scss" scoped>
-    ul{
-        margin-bottom: 3rem;
-        background-color: azure;
+    .ivy_movie_cover {
+        height: 600px;
+        width: 342px;
+        object-fit: cover;
+        object-position: center;
     }
-    img {
-        height: 50px;
+
+    .fa-star{
+        color: gold;
     }
 </style>

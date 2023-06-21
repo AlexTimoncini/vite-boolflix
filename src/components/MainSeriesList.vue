@@ -45,7 +45,12 @@ import { store } from '../store.js'
                     :alt="serie.original_language + ' language'" >
                 </li>
                 <li>
-                    {{ handleVote(serie.vote_average) }}
+                    <span v-for="star in parseInt(handleVote(serie.vote_average))">
+                        <i class="fa-solid fa-star"></i>
+                    </span>
+                    <span v-for="unstar in (5 - parseInt(handleVote(serie.vote_average)))">
+                        <i class="fa-regular fa-star"></i>
+                    </span>
                 </li>
             </ul>
         </li>
