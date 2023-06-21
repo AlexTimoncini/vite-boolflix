@@ -16,6 +16,12 @@ import { store } from '../store.js'
                     return true
                 }
                 return false
+            },
+            handleVote(vote){
+                if(vote > 0){
+                    return (vote / 2).toFixed()
+                }
+                return 'N.C.'
             }
         }
     }
@@ -26,7 +32,10 @@ import { store } from '../store.js'
         <li v-for="serie in store.seriesList">
             <ul>
                 <li>
-                    <img :src="getImagePath(`https://image.tmdb.org/t/p/w342${serie.backdrop_path}`)" :alt="serie.original_name + 'image'">
+                    <img :src="(serie.backdrop_path != null) 
+                    ? getImagePath(`https://image.tmdb.org/t/p/w342${serie.backdrop_path}`) 
+                    : getImagePath(`../assets/default_poster.jpg`)" 
+                    :alt="serie.original_name + 'image'">                
                 </li>
                 <li>
                     {{ serie.original_name }}
@@ -36,7 +45,7 @@ import { store } from '../store.js'
                     :alt="serie.original_language + ' language'" >
                 </li>
                 <li>
-                    {{ serie.vote_average }}
+                    {{ handleVote(serie.vote_average) }}
                 </li>
             </ul>
         </li>

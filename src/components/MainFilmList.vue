@@ -34,7 +34,7 @@ import { store } from '../store.js'
                 <li>
                     <img :src="(film.backdrop_path != null) 
                     ? getImagePath(`https://image.tmdb.org/t/p/w342${film.backdrop_path}`) 
-                    : getImagePath(`https://image.tmdb.org/t/p/w342${film.backdrop_path}`)" 
+                    : getImagePath(`../assets/default_poster.jpg`)" 
                     :alt="film.original_name + 'image'">
                 </li>
                 <li>
