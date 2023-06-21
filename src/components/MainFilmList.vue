@@ -7,6 +7,11 @@ import { store } from '../store.js'
                 store,
             }
         },
+        methods : {
+            getImagePath: function(imgPath) {
+                return new URL(imgPath, import.meta.url).href;
+            }
+        }
     }
 </script>
 
@@ -21,7 +26,7 @@ import { store } from '../store.js'
                     {{ film.original_title }}
                 </li>
                 <li>
-                    {{ film.original_language }}
+                    <img :src="getImagePath(`../assets/lang/${film.original_language}.png`)" alt="not working">
                 </li>
                 <li>
                     {{ film.vote_average }}
