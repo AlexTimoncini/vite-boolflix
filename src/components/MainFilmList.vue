@@ -10,6 +10,12 @@ import { store } from '../store.js'
         methods : {
             getImagePath: function(imgPath) {
                 return new URL(imgPath, import.meta.url).href;
+            },
+            isAvaibleLang(lang){
+                if(store.langAvaible.includes(lang)){
+                    return true
+                }
+                return false
             }
         }
     }
@@ -26,7 +32,8 @@ import { store } from '../store.js'
                     {{ film.original_title }}
                 </li>
                 <li>
-                    <img :src="getImagePath(`../assets/lang/${film.original_language}.png`)" alt="not working">
+                    <img :src="isAvaibleLang(film.original_language) ? getImagePath(`../assets/lang/${film.original_language}.png`) : getImagePath(`../assets/lang/globe.png`)" 
+                    :alt="film.original_language + ' language'" >
                 </li>
                 <li>
                     {{ film.vote_average }}
