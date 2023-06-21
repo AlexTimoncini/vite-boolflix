@@ -1,10 +1,17 @@
 <script>
     import HeaderNavbar from './HeaderNavbar.vue';
     import axios from 'axios';
+    import { store } from '../store.js'
+
     export default{
         name: 'HeaderApp',
         components: {
             HeaderNavbar,
+        },
+        data() {
+            return {
+                store,
+            }
         },
         methods: {
             filterFilm(filter){
@@ -14,7 +21,8 @@
             displayFilm(filmName){
                 axios.get(this.filterFilm(filmName))
                 .then( (response)=> {
-                    console.log(response.data.results)
+                    store.filmList = response.data.results
+                    console.log(store.filmList);
                 })
                 .catch( function(error){
                     console.log(error)
