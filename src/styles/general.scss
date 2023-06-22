@@ -24,3 +24,19 @@ a{
 ul{
     list-style: none;
 }
+
+.ivy_section_title{
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    color: red;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.ivy_filter_white{
+    filter: invert(1);
+}
+
+.fa-star{
+    color: gold;
+}
