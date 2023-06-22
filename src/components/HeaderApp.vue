@@ -1,5 +1,6 @@
 <script>
     import HeaderNavbar from './HeaderNavbar.vue';
+    import HeaderJumbo from './HeaderJumbo.vue';
     import axios from 'axios';
     import { store } from '../store.js'
 
@@ -7,10 +8,12 @@
         name: 'HeaderApp',
         components: {
             HeaderNavbar,
+            HeaderJumbo,
         },
         data() {
             return {
                 store,
+                newestFilm: {},
             }
         },
         methods: {
@@ -40,14 +43,29 @@
                 .catch( function(error){
                     console.log(error)
                 });
+            },
+            getTrendFilms(){
+                axios.get('https://api.themoviedb.org/3/movie/popular?api_key=8f101200f70e7ca202e652f769e5695e')
+                .then( (response)=> {
+                    this.newestFilm = response.data.results[0];
+                    console.log(this.newestFilm)
+                })
+                .catch( function(error){
+                    console.log(error)
+                });
             }
+        },
+        created(){
+            this.getTrendFilms()
         }
+
     }
 </script>
 
 <template>
     <header>
         <HeaderNavbar @lookingFilm="displayResults"/>
+        <HeaderJumbo :newFilm="newestFilm"/>
     </header>
 </template>
 

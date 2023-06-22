@@ -67,7 +67,6 @@ import { store } from '../store.js'
     @include flex(row, center, flex-start, wrap);
     width: 100vw;
     gap: 1rem;
-
         .ivy_serie_cover {
             height: 600px;
             width: 342px;

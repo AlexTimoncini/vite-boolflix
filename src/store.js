@@ -6,4 +6,5 @@ export const store = reactive({
     langAvaible: [
         'de', 'en', 'es', 'fr', 'it', 'ja', 'ru', 'us', 'zh'
     ],
+
 });
