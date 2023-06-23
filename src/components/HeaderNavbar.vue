@@ -48,6 +48,11 @@
     nav{
         @include flex(row, space-between, center, nowrap);
         padding: 1rem 2rem;
+        position: fixed;
+        width: 100%;
+        top:0;
+        z-index: 2;
+        background: linear-gradient(#000, transparent);
         .ivy_container{
             display: flex;
             .ivy_logo_box{
